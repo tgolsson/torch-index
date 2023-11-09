@@ -36,7 +36,6 @@ jobs:
 
       - name: Build docs
         run: |
-          ./get-pants.sh
           pants run cmd/scrape:bin
 
       - name: Upload artifact
