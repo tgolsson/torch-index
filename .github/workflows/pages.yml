@@ -31,7 +31,7 @@ jobs:
       - name: Initialize Pants
         uses: pantsbuild/actions/init-pants@main
         with:
-          gha-cache-key: cache0-docs
+          gha-cache-key: cache1-docs
           named-caches-hash: ${{ hashFiles('go.mod') }}
 
       - name: Build docs
