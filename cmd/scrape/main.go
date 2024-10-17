@@ -9,18 +9,17 @@ import (
 	"github.com/gocolly/colly"
 )
 
-var (
-	URLs = []string{
-		"https://download.pytorch.org/whl/",
-		"https://download.pytorch.org/whl/nightly/",
-		"https://download.pytorch.org/whl/cu118/",
-		"https://download.pytorch.org/whl/cu116/",
-		"https://download.pytorch.org/whl/cu110/",
-		"https://download.pytorch.org/whl/cu111/",
-		"https://download.pytorch.org/whl/cpu/",
-		"https://download.pytorch.org/whl/nightly/cpu/",
-	}
-)
+var URLs = []string{
+	"https://download.pytorch.org/whl/",
+	"https://download.pytorch.org/whl/nightly/",
+	"https://download.pytorch.org/whl/cu121/",
+	"https://download.pytorch.org/whl/cu118/",
+	"https://download.pytorch.org/whl/cu116/",
+	"https://download.pytorch.org/whl/cu110/",
+	"https://download.pytorch.org/whl/cu111/",
+	"https://download.pytorch.org/whl/cpu/",
+	"https://download.pytorch.org/whl/nightly/cpu/",
+}
 
 type Version struct {
 	Title string
@@ -51,7 +50,7 @@ func collectProject(name, url string) Project {
 			Title: e.Text,
 			URL:   e.Attr("href"),
 		}
-		fmt.Println("got version", version)
+		// 		fmt.Println("got version", version)
 		versions = append(versions, version)
 	})
 
@@ -104,7 +103,7 @@ func collectIndex(url string) Index {
 func writeProject(variant string, project Project) {
 	fmt.Println("writing project", project.Name)
 
-	os.MkdirAll(fmt.Sprintf("%s/%s", variant, project.Name), 0755)
+	os.MkdirAll(fmt.Sprintf("%s/%s", variant, project.Name), 0o755)
 	out, err := os.Create(fmt.Sprintf("%s/%s/index.html", variant, project.Name))
 	if err != nil {
 		panic(err)
@@ -126,7 +125,7 @@ func writeIndex(index Index) {
 		variant = variant[:len(variant)-1]
 	}
 
-	os.MkdirAll(variant, 0755)
+	os.MkdirAll(variant, 0o755)
 	out, err := os.Create(fmt.Sprintf("%s/index.html", variant))
 	if err != nil {
 		panic(err)
