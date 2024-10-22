@@ -14,6 +14,7 @@ var URLs = []string{
 	"https://download.pytorch.org/whl/nightly/",
 	"https://download.pytorch.org/whl/cu121/",
 	"https://download.pytorch.org/whl/cu118/",
+	"https://download.pytorch.org/whl/cu117/",
 	"https://download.pytorch.org/whl/cu116/",
 	"https://download.pytorch.org/whl/cu110/",
 	"https://download.pytorch.org/whl/cu111/",
