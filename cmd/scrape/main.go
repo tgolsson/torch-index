@@ -12,6 +12,7 @@ import (
 var URLs = []string{
 	"https://download.pytorch.org/whl/",
 	"https://download.pytorch.org/whl/nightly/",
+	"https://download.pytorch.org/whl/cu126/",
 	"https://download.pytorch.org/whl/cu121/",
 	"https://download.pytorch.org/whl/cu118/",
 	"https://download.pytorch.org/whl/cu117/",
