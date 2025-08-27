@@ -12,6 +12,7 @@ import (
 var URLs = []string{
 	"https://download.pytorch.org/whl/",
 	"https://download.pytorch.org/whl/nightly/",
+	"https://download.pytorch.org/whl/cu129/",
 	"https://download.pytorch.org/whl/cu126/",
 	"https://download.pytorch.org/whl/cu121/",
 	"https://download.pytorch.org/whl/cu118/",
@@ -48,6 +49,10 @@ func collectProject(name, url string) Project {
 	}
 
 	c.OnHTML("a[href]", func(e *colly.HTMLElement) {
+		if !strings.Contains(e.Text, "+") {
+			return
+		}
+
 		version := Version{
 			Title: e.Text,
 			URL:   e.Attr("href"),
@@ -93,6 +98,10 @@ func collectIndex(url string) Index {
 	fmt.Println("collected all projects", url)
 	close(ch)
 	for project := range ch {
+		if len(project.Versions) == 0 {
+			continue
+		}
+
 		projects = append(projects, project)
 	}
 
